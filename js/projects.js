@@ -193,7 +193,7 @@
   const DEFAULT_PROJECTS = [
     new ProjectCard({
       name: 'windows copy',
-      hoursSpent: '35.272',
+      hoursSpent: '35.27',
       commits: '27',
       category: 'GAMELIKE',
       topHeader: 'Database Detective',
@@ -216,6 +216,7 @@
 
     new ProjectCard({
       name: 'FULL STACK',
+      subMeta: 'learning full stack webdev',
       hoursSpent: '110.4',
       commits: '117',
       category: 'WEBGL / WASM',
