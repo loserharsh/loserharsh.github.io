@@ -1,0 +1,333 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harsh — Software Architect &amp; Creative Engineer</title>
+  <meta name="description" content="Editorial manga-inspired developer portfolio featuring macOS bento widgets, Musashi artwork, and HUD technical specs.">
+  
+  <!-- Original Fonts: Space Grotesk, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Anime.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Subtle Halftone Screentone Texture Overlay -->
+  <div class="screentone-overlay" aria-hidden="true"></div>
+
+  <!-- Full-Width Transparent Floating Top 0 Navbar -->
+  <header class="navbar-wrapper">
+    <nav class="navbar" aria-label="Main Navigation">
+      
+      <!-- Left: Avatar / Stamp Placeholder -->
+      <div class="nav-left">
+        <a href="#hero" class="nav-avatar-wrap spring-btn" aria-label="Home">
+          <span class="nav-kanji-tag font-mono">改善</span>
+        </a>
+      </div>
+
+      <!-- Center: Navigation Links -->
+      <div class="nav-center">
+        <div class="nav-links">
+          <a href="#hero" class="nav-link active" data-nav="hero">
+            <span>Home</span>
+            <span class="active-dot"></span>
+          </a>
+          <a href="#about" class="nav-link" data-nav="about">
+            <span>About</span>
+            <span class="active-dot"></span>
+          </a>
+          <a href="#projects" class="nav-link" data-nav="projects">
+            <span>Projects</span>
+            <span class="active-dot"></span>
+          </a>
+          <a href="#contact" class="nav-link" data-nav="contact">
+            <span>Contact</span>
+            <span class="active-dot"></span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: GitHub Logo, Theme Switcher & Straw Hat Keychain -->
+      <div class="nav-right">
+        <a href="https://github.com/loserharsh" target="_blank" rel="noopener noreferrer" class="nav-github-btn spring-btn" aria-label="GitHub Profile" title="GitHub Profile">
+          <svg class="nav-icon github-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+        </a>
+        <button class="theme-toggle spring-btn" id="themeToggle" aria-label="Toggle Theme" title="Toggle Theme">
+          <svg class="theme-icon icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg class="theme-icon icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+
+        <!-- Hanging Straw Hat Keychain Charm -->
+        <div class="nav-keychain-wrap" id="strawhatKeychain" role="button" tabindex="0" title="Mugiwara // Straw Hat Keychain (Click to jiggle!)" aria-label="Straw Hat Keychain">
+          <div class="keychain-ring"></div>
+          <div class="keychain-chain">
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+          </div>
+          <div class="keychain-hat-charm">
+            <img src="assets/strawhat_transparent.png" alt="Straw Hat Keychain" class="strawhat-img">
+          </div>
+        </div>
+      </div>
+
+    </nav>
+  </header>
+
+  <main>
+    <!-- ==================== HERO SECTION ==================== -->
+    <section id="hero" class="hero-section">
+      
+      <!-- Sakura Blossom Manga Artwork Background (Original Color & Full Clarity) -->
+      <div class="hero-bg-canvas" aria-hidden="true">
+        <img src="assets/sakuarhero.png" alt="Sakura Blossom Artwork" class="hero-bg-art">
+      </div>
+
+      <!-- Seamless Gradient Blend to About Section -->
+      <div class="hero-bottom-blend" aria-hidden="true"></div>
+
+      <div class="container hero-content-wrap">
+        <div class="hero-name-group anime-hero-item">
+          <h1 class="hero-line hero-line-primary font-heading">HARSHWARDHAN</h1>
+          <h1 class="hero-line hero-line-accent font-heading">KAILASIA<span class="accent-dot">.</span></h1>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ABOUT SECTION (WINDOWS TERMINAL FASTFETCH DASHBOARD) ==================== -->
+    <section id="about" class="about-section terminal-section scroll-section">
+      
+      <!-- Background Cutting Mat Texture -->
+      <div class="terminal-bg-backdrop" aria-hidden="true">
+        <img src="assets/media_1787748727174.jpg" alt="" class="terminal-bg-blur">
+        <div class="terminal-bg-glow"></div>
+      </div>
+
+      <!-- Seamless Bottom Blend to Projects Section -->
+      <div class="terminal-bottom-blend" aria-hidden="true"></div>
+
+      <div class="container">
+        
+        <!-- Section Header -->
+        <div class="about-header-wrap anime-scroll-item">
+          <div class="section-label font-mono">
+            <span>ABOUT ME</span>
+          </div>
+          <h2 class="section-heading font-heading">
+            POWERSHELL &amp; <span class="text-accent">TERMINAL SPEC</span>
+          </h2>
+          <p class="about-lead font-sans">
+            Hardware cluster telemetry, system session metrics, and live interactive developer notebook.
+          </p>
+        </div>
+
+        <!-- Windows Terminal Window Frame -->
+        <div class="windows-terminal-window spring-card anime-scroll-item" id="terminalWindow">
+          
+          <!-- Terminal Titlebar & Tabs -->
+          <div class="terminal-titlebar">
+            
+            <div class="terminal-tabs-row" id="terminalTabs">
+              <!-- Hardcoded Read-Only Tab 1: pwsh -->
+              <div class="term-tab active" data-tab="tab-pwsh-main">
+                <span class="tab-console-ic font-mono">C:\_</span>
+                <span class="tab-title font-mono">pwsh</span>
+                <span class="tab-close-static">×</span>
+              </div>
+
+              <!-- New Tab Button (+) -->
+              <button class="term-new-tab-btn font-mono" id="terminalNewTabBtn" title="Open Interactive Notebook Tab" aria-label="New Tab">+</button>
+              <button class="term-dropdown-btn font-mono" title="Shell dropdown" aria-label="Shell dropdown">˅</button>
+            </div>
+
+            <!-- Windows 11 Window Controls -->
+            <div class="terminal-win-controls">
+              <button class="win-btn win-min" aria-label="Minimize">—</button>
+              <button class="win-btn win-max" aria-label="Maximize">□</button>
+              <button class="win-btn win-close" aria-label="Close">✕</button>
+            </div>
+          </div>
+
+          <!-- Terminal Window Body (Tab Content Views) -->
+          <div class="terminal-window-body">
+            
+            <!-- TAB 1: DYNAMIC READ-ONLY PRESENTATION PROFILE (CONFIGURED VIA JS) -->
+            <div class="terminal-tab-content active font-mono" id="tab-pwsh-main">
+              <!-- Content dynamically rendered from js/terminal.js -->
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== PROJECTS SECTION ==================== -->
+    <section id="projects" class="projects-section scroll-section">
+      <div class="container">
+        <div class="section-header-wrap">
+          <div class="section-label font-mono anime-scroll-item">
+            <span>FEATURED PROJECTS</span>
+          </div>
+          <div class="projects-title-row">
+            <h2 class="section-heading font-heading anime-scroll-item">
+              SELECTED <span class="text-accent">CHRONICLES</span>
+            </h2>
+          </div>
+        </div>
+
+        <!-- Project Spec Tag Grid (Dynamically Rendered via js/projects.js) -->
+        <div class="projects-grid" id="projectsGrid">
+          <!-- Content dynamically rendered from js/projects.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CONTACT SECTION ==================== -->
+    <section id="contact" class="contact-section scroll-section">
+      <div class="container contact-container">
+        <div class="section-label font-mono anime-scroll-item">
+        </div>
+
+        <p class="contact-subhead font-mono anime-scroll-item">
+          READY TO DISCUSS A PROJECT
+        </p>
+
+        <!-- Big Spring CTA with Wave Letter Physics -->
+        <div class="huge-cta-wrap anime-scroll-item">
+          <a href="mailto:contact@example.com?subject=Project%20Inquiry" class="huge-cta-link spring-cta" id="hugeCtaLink">
+            <span class="cta-letter">L</span><span class="cta-letter">E</span><span class="cta-letter">T</span><span class="cta-letter">'</span><span class="cta-letter">S</span>
+            <span class="cta-space">&nbsp;</span>
+            <span class="cta-letter accent-letter">T</span><span class="cta-letter accent-letter">A</span><span class="cta-letter accent-letter">L</span><span class="cta-letter accent-letter">K</span>
+          </a>
+        </div>
+
+        <!-- Social Links -->
+        <div class="social-bar anime-scroll-item">
+          <a href="https://github.com/loserharsh" target="_blank" rel="noopener noreferrer" class="social-link spring-btn font-mono"> GITHUB </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link spring-btn font-mono"> LINKEDIN </a>
+          <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="social-link spring-btn font-mono"> X </a>
+          <a href="https://readcv.com" target="_blank" rel="noopener noreferrer" class="social-link spring-btn font-mono"> READ.CV </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <span class="footer-copy font-mono">© <span id="currentYear">2026</span> HARSHWARDHAN KAILASIA.</span>
+      <button class="back-to-top font-mono spring-btn" id="backToTop" aria-label="Back to top">
+        <span>RETURN TO TOP ↑</span>
+      </button>
+    </div>
+  </footer>
+
+  <!-- ==================== BOTTOM-LEFT INTERACTIVE VINYL RECORD PLAYER ==================== -->
+  <aside class="mini-vinyl-player" id="miniVinylPlayer" aria-label="Audio Player Widget">
+    
+    <!-- Audio Element & Hidden File Picker for Local Storage Music -->
+    <audio id="vinylAudio" preload="auto" loop></audio>
+    <input type="file" id="vinylFileInput" accept="audio/*" style="display: none;" aria-hidden="true">
+
+    <div class="vinyl-widget-card" id="vinylTrigger" role="button" tabindex="0" title="Click to Play / Pause music (or load from storage)">
+      
+      <!-- Vinyl Disc (Slides out & spins when playing) -->
+      <div class="vinyl-disc-wrap" id="vinylDisc">
+        <div class="vinyl-groove-disc">
+          <div class="vinyl-center-label">
+            <span class="vinyl-spindle-hole"></span>
+          </div>
+          <svg class="vinyl-curve-text" viewBox="0 0 100 100">
+            <path id="vinylPath" d="M 18,50 A 32,32 0 1,1 82,50" fill="none"/>
+            <text font-size="6" font-family="'JetBrains Mono', monospace" fill="#ffffff" letter-spacing="1">
+              <textPath href="#vinylPath" startOffset="50%" text-anchor="middle"> LO-FI</textPath>
+            </text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Paper Sleeve Jacket (Matching Image Reference) -->
+      <div class="vinyl-sleeve-jacket">
+        <!-- Doodled Birds -->
+        <div class="sleeve-birds-doodle" aria-hidden="true">
+          <svg viewBox="0 0 40 25" width="22" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M2 14 Q 7 4, 12 14 Q 17 4, 22 14"/>
+            <path d="M16 22 Q 20 13, 24 22 Q 28 13, 32 22"/>
+          </svg>
+        </div>
+
+        <!-- Sleeve Action Text -->
+        <div class="sleeve-text-block font-mono">
+          <span class="sleeve-play-lbl">PLAY MUSIC</span>
+          <span class="sleeve-sub-lbl">PULL &amp; ROTATE →</span>
+        </div>
+
+        <!-- Spotify-style Soundcode Wave Pill -->
+        <div class="sleeve-soundcode-pill">
+          <svg class="spotify-logo-icon" viewBox="0 0 24 24" width="10" height="10" fill="currentColor">
+            <circle cx="12" cy="12" r="10" fill="currentColor"/>
+            <path d="M7 9.5 C 10.5 8.5, 14.5 9, 17 10.5 M7.5 12.2 C 10.5 11.4, 13.8 11.8, 16 13 M8 14.8 C 10.5 14.2, 13 14.5, 15 15.4" stroke="#000000" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+          </svg>
+          <div class="soundcode-bars" id="soundcodeBars">
+            <span class="sc-bar"></span>
+            <span class="sc-bar"></span>
+            <span class="sc-bar"></span>
+            <span class="sc-bar"></span>
+            <span class="sc-bar"></span>
+            <span class="sc-bar"></span>
+            <span class="sc-bar"></span>
+            <span class="sc-bar"></span>
+          </div>
+        </div>
+
+        <!-- Right Notch Cutout where Disc emerges -->
+        <div class="sleeve-notch-cutout"></div>
+      </div>
+
+    </div>
+
+    <!-- Storage File Loader Button -->
+    <button class="vinyl-upload-btn font-mono" id="vinylUploadBtn" title="Load custom audio from storage" aria-label="Upload custom music">
+      <i data-lucide="folder-music" class="upload-icon"></i>
+      <span class="upload-tooltip">Storage Audio</span>
+    </button>
+  </aside>
+
+  <!-- Scripts -->
+  <script src="js/projects.js"></script>
+  <script src="js/terminal.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
