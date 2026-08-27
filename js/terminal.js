@@ -356,10 +356,10 @@ a game, or an experiment. I don't really like staying inside one box.`,
         return `[OK] Neofetch profile reloaded.`;
       },
 
-      notes: `--- KAIZEN NOTEBOOK [LIVE SCRATCHPAD] ---
-1. Optimize distributed core queue latency to < 1.2ms
-2. Finalize terminal interactive UI patterns
-3. Ship vector embedding indexing pipeline
+      notes: `--- HARSHWARDHAN'S NOTEBOOK [LIVE SCRATCHPAD] ---
+1. Build something worth remembering.
+2. Learn something I don't understand yet.
+3. Break it. Figure out why. Fix it.
 (Type anything to append notes to this session buffer)`
     };
 
