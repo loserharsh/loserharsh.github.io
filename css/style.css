@@ -1209,12 +1209,16 @@ button {
   transform-origin: center center;
   will-change: transform, border-color, box-shadow;
   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 
 .project-spec-tag:hover {
   border-color: var(--border-hover);
   box-shadow: 0 0 30px var(--color-accent-glow);
   transform: translateY(-3px);
+  color: inherit;
 }
 
 /* Grommet Eyelet & Cord String */
@@ -1254,6 +1258,45 @@ button {
   color: var(--text-muted);
   padding-bottom: 0.85rem;
   border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tag-repo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  background: rgba(121, 166, 220, 0.08);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(121, 166, 220, 0.22);
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+.tag-repo-ic {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.tag-link-arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.project-spec-tag:hover .tag-repo-badge {
+  background: var(--color-accent);
+  color: var(--text-inverse);
+  box-shadow: 0 0 12px var(--color-accent-glow);
+}
+
+.project-spec-tag:hover .tag-link-arrow {
+  transform: translate(2px, -2px);
 }
 
 /* Hero Row (Time + Name) */
@@ -1318,6 +1361,22 @@ button {
   text-transform: uppercase;
   color: var(--text-primary);
   line-height: 1.15;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.tag-name-arrow {
+  font-size: 0.9em;
+  color: var(--color-accent);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
+  opacity: 0.7;
+}
+
+.project-spec-tag:hover .tag-name-arrow {
+  transform: translate(3px, -3px);
+  opacity: 1;
+  color: var(--color-accent-hover);
 }
 
 .tag-spec-sub {

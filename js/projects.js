@@ -127,9 +127,13 @@
         ? `${typeof this.commits === 'number' ? this.commits.toLocaleString() : this.commits} COMMITS`
         : '';
       const subMeta = [commitsText, this.category].filter(Boolean).join(' // ');
+      const targetUrl = this.githubUrl || this.liveUrl || 'https://github.com/loserharsh';
+      const isLink = Boolean(targetUrl);
+      const tagElement = isLink ? 'a' : 'article';
+      const linkAttrs = isLink ? `href="${targetUrl}" target="_blank" rel="noopener noreferrer" aria-label="${this.name} repository"` : '';
 
       return `
-        <article class="project-spec-tag ${spanClass} spring-project-card anime-scroll-item">
+        <${tagElement} ${linkAttrs} class="project-spec-tag ${spanClass} spring-project-card anime-scroll-item">
           <!-- Grommet Eyelet & String Cord -->
           <div class="tag-eyelet-wrap" aria-hidden="true">
             <div class="tag-eyelet"></div>
@@ -142,6 +146,7 @@
           <!-- Top Tag Meta Header -->
           <div class="tag-top-header font-mono">
             <span>${this.topHeader}</span>
+            ${targetUrl ? `<span class="tag-repo-badge font-mono"><svg class="tag-repo-ic" viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> REPO <span class="tag-link-arrow">↗</span></span>` : ''}
           </div>
 
           <!-- Main Tag Hero Row: Time + Project Name & Glyph Stamp -->
@@ -155,7 +160,7 @@
               <div class="tag-glyph-stamp font-mono">${this.glyphStamp}</div>
               <div class="tag-name-col">
                 <span class="tag-meta-lbl">PROJECT NAME</span>
-                <h3 class="tag-project-name font-heading">${this.name}</h3>
+                <h3 class="tag-project-name font-heading">${this.name} <span class="tag-name-arrow" aria-hidden="true">↗</span></h3>
                 ${subMeta ? `<span class="tag-spec-sub">${subMeta}</span>` : ''}
               </div>
             </div>
@@ -166,7 +171,7 @@
 
           <!-- Bottom Segmented Language Bar Graph -->
           ${this.renderLanguageGraph()}
-        </article>
+        </${tagElement}>
       `;
     }
 
@@ -194,6 +199,7 @@
       topHeader: 'Database Detective',
       glyphStamp: '⊕ ⊗ ⊙ ⊚',
       spanTwo: true,
+      githubUrl: 'https://github.com/loserharsh/web-dev/tree/main/project/databaseditative',
       breakdowns: [
         { label: 'FRONTEND // CSS & html', value: '8.94 hrs' },
         { label: 'BACKEND // javascript', value: '27.51 hrs' },
@@ -208,50 +214,6 @@
       ]
     }),
 
-    // new ProjectCard({
-    //   name: 'XINE TELEMETRY',
-    //   hoursSpent: '84.50',
-    //   commits: '1,240',
-    //   category: 'WEBSOCKETS',
-    //   topHeader: 'REAL-TIME TELEMETRY ENGINE // BENCHMARK 0.4MS',
-    //   glyphStamp: '⊕ ⊗ ⊙ ⊚',
-    //   spanTwo: false,
-    //   breakdowns: [
-    //     { label: 'SOCKETS', value: '42.10 hrs' },
-    //     { label: 'REDIS CACHE', value: '18.25 hrs' },
-    //     { label: 'RUST CORE', value: '14.75 hrs' },
-    //     { label: 'E2E TESTS', value: '9.40 hrs' }
-    //   ],
-    //   languages: [
-    //     { name: 'TypeScript', percentage: 68, colorClass: 'seg-primary' },
-    //     { name: 'WebSockets', percentage: 14, colorClass: 'seg-secondary' },
-    //     { name: 'Rust / Wasm', percentage: 12, colorClass: 'seg-accent' },
-    //     { name: 'Go', percentage: 6, colorClass: 'seg-muted' }
-    //   ]
-    // }),
-
-    // new ProjectCard({
-    //   name: 'SAHARA COMMERCE',
-    //   hoursSpent: '48.15',
-    //   commits: '612',
-    //   category: 'GRAPHQL',
-    //   topHeader: 'HEADLESS STOREFRONT // SUB-SECOND CHECKOUT',
-    //   glyphStamp: '⊕ ⊗ ⊙ ⊚',
-    //   spanTwo: false,
-    //   breakdowns: [
-    //     { label: 'GRAPHQL', value: '22.40 hrs' },
-    //     { label: 'STOREFRONT', value: '15.10 hrs' },
-    //     { label: 'SHOPIFY API', value: '6.85 hrs' },
-    //     { label: 'EDGE WORKERS', value: '3.80 hrs' }
-    //   ],
-    //   languages: [
-    //     { name: 'Next.js 15', percentage: 58, colorClass: 'seg-primary' },
-    //     { name: 'GraphQL', percentage: 24, colorClass: 'seg-secondary' },
-    //     { name: 'Tailwind', percentage: 12, colorClass: 'seg-accent' },
-    //     { name: 'Shopify', percentage: 6, colorClass: 'seg-muted' }
-    //   ]
-    // }),
-
     new ProjectCard({
       name: 'FULL STACK',
       hoursSpent: '110.4',
@@ -260,6 +222,7 @@
       topHeader: 'learning full stack webdev',
       glyphStamp: '⊕ ⊗ ⊙ ⊚',
       spanTwo: true,
+      githubUrl: 'https://github.com/loserharsh/web-dev',
       breakdowns: [
         { label: 'JAVASCRIPT', value: '45.2 hrs' },
         { label: 'CSS', value: '30.6 hrs' },
