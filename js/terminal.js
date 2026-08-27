@@ -60,7 +60,7 @@ window.TERMINAL_ABOUT_CONFIG = {
       titleColor: "cyan",
 
       content:
-        "I'm Harshwardhan, a CS guy who likes making things. " +
+        "I'm Harshwardhan, a {purple}CS guy{/purple} who likes making things. " +
         "I code, draw, edit, experiment, play, and occasionally build " +
         "something just because I wondered if I could."
     },
@@ -178,20 +178,7 @@ window.TERMINAL_ABOUT_CONFIG = {
           label: "UPTIME",
           labelColor: "yellow",
           val: "??? // Somehow Still Running"
-        },
-
-        {
-          label: "MODE",
-          labelColor: "yellow",
-          val: "{cyan}BUILD // BREAK // LEARN // REPEAT{/cyan}"
-        },
-
-        {
-          label: "STATUS",
-          labelColor: "yellow",
-          val: "{green}ONLINE{/green} // Probably Building Something"
         }
-
       ]
 
     }
@@ -322,41 +309,45 @@ window.TERMINAL_ABOUT_CONFIG = {
     const COMMANDS = {
       help: `AVAILABLE COMMANDS:
   help      - Display this help manual
-  whoami    - Show current active engineer profile
-  about     - Overview of system architecture & philosophy
-  skills    - List core backend, frontend & devops competencies
-  projects  - List featured chronicles & case studies
-  contact   - Dispatch channels & direct contact routes
+  whoami    - Show current developer profile
+  about     - Overview of my work & philosophy
+  skills    - List things I build, explore & experiment with
+  projects  - List featured projects & experiments
+  contact   - Contact routes & social links
   clear     - Clear terminal buffer
   date      - Print current system date & time
   neofetch  - Re-render system profile display
   notes     - Read / write quick developer notes`,
 
-      whoami: `Alexander Vance // Full-Stack Architect & Creative Technologist
-Location: San Francisco, CA (Remote Worldwide Available)
-Status: Online // Available for contract builds & leadership roles`,
+      whoami: `HARSHWARDHAN KAILASIA // CS GUY
+Location: Gwalior, India
+Status: Online // Building, experimenting & learning`,
 
-      about: `PHILOSOPHY: Kaizen (改善) — Continuous 1% daily refinement.
-Specialized in building resilient cloud architectures, real-time distributed
-services, sub-second telemetry engines, and hardware-accelerated user interfaces.`,
+      about: `PHILOSOPHY: BUILD // BREAK // LEARN // REPEAT.
+I like turning random ideas into things I can actually interact with.
+Sometimes that's code. Sometimes it's a drawing, an edit, an animation,
+a game, or an experiment. I don't really like staying inside one box.`,
 
-      skills: `CORE TECH ARSENAL:
-  [ Frontend ]  Next.js 15, React 19, TypeScript, Tailwind CSS, WebGL/Shaders
-  [ Backend  ]  Node.js, Go, Python, GraphQL, WebSockets, REST
-  [ Data     ]  PostgreSQL, Redis, Kafka, Vector Databases (RAG)
-  [ DevOps   ]  Docker, Kubernetes, AWS, Terraform, CI/CD`,
+      skills: `CURRENT ARSENAL:
+  [ CODE     ]  Python, C++, JavaScript, HTML, CSS, DSA
+  [ WEB      ]  Interactive websites, creative interfaces & frontend experiments
+  [ AI       ]  AI tools, machine learning & experimentation
+  [ CREATIVE ]  Drawing, editing, animation, Manim & visual experiments
+  [ BUILD    ]  Interactive experiences, UI experiments & random ideas
+  [ PLAY     ]  Games, game-like interfaces & exploring how things work`,
 
       projects: `SELECTED CHRONICLES:
-  01. LANDAGER CLOUD   - Enterprise multi-tenant SaaS & property valuation engine
-  02. XINE TELEMETRY   - Real-time WebSocket cookieless event stream engine
-  03. SAHARA COMMERCE  - Headless Shopify & GraphQL high-speed storefront
-  04. KINETIC UI       - 60fps accessible hardware-accelerated motion system`,
+  01. WINDOWS COPY       - Game-like Windows-inspired interactive experience
+                           35.272 hrs // 17 commits
+  02. MORE INCOMING      - Experiments currently being built
+  03. CLASSIFIED         - Idea.exe is still running...
+  04. ???                - Probably another unnecessary project`,
 
       contact: `DIRECT DISPATCH:
-  Email: hello@domain.io
-  GitHub: github.com
-  LinkedIn: linkedin.com
-  Response Time: Within 24 Hours`,
+  Email: harshwardhan1617@gmail.com
+  Alternate: harshwardhan@kailasia.com
+  GitHub: github.com/loserharsh
+  Location: Gwalior, India`,
 
       date: () => `Current System Timestamp: ${new Date().toISOString()}`,
 
@@ -408,13 +399,9 @@ services, sub-second telemetry engines, and hardware-accelerated user interfaces
       contentEl.id = newTabId;
       contentEl.innerHTML = `
         <div class="interactive-cli-view">
-          <div class="cli-banner font-mono">
-            <span class="text-accent">Windows PowerShell [Notebook Session #${tabCounter}]</span><br>
-            <span>Type <span class="term-highlight">'help'</span> for commands, or write freely as a scratchpad notebook.</span>
-          </div>
           <div class="cli-output font-mono"></div>
           <div class="cli-prompt-row font-mono">
-            <span class="cli-prompt-path">PS C:\\Users\\Alexander\\notebooks></span>
+            <span class="cli-prompt-path">PS C:\\Users\\Harsh\\notebooks></span>
             <input type="text" class="dynamic-cli-input" spellcheck="false" autocomplete="off" autofocus>
           </div>
         </div>
@@ -457,7 +444,7 @@ services, sub-second telemetry engines, and hardware-accelerated user interfaces
             if (rawVal) {
               const cmdLine = document.createElement('div');
               cmdLine.className = 'cli-echo-line font-mono';
-              cmdLine.innerHTML = `<span class="cli-prompt-path">PS C:\\Users\\Alexander\\notebooks></span> ${rawVal}`;
+              cmdLine.innerHTML = `<span class="cli-prompt-path">PS C:\\Users\\Harsh\\notebooks></span> ${rawVal}`;
               dynamicOutput.appendChild(cmdLine);
 
               if (cmd === 'clear') {
