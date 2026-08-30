@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Blog Post — Harsh, cs guy">
+  <meta property="og:url" content="https://loserharsh.github.io/post.html">
+  <title>Post — Harsh, cs guy</title>
+
+  <link rel="icon" href="assets/1fe009720fe1cefefa0f07b401a72fe3.jpg" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Anime.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+
+  <!-- marked.js — Markdown parser -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@4/marked.min.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Subtle Halftone Screentone Texture Overlay -->
+  <div class="screentone-overlay" aria-hidden="true"></div>
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress-bar" id="readingProgressBar" aria-hidden="true"></div>
+
+  <!-- Full-Width Transparent Floating Navbar -->
+  <header class="navbar-wrapper">
+    <nav class="navbar" aria-label="Main Navigation">
+
+      <!-- Left: Kanji Stamp -->
+      <div class="nav-left">
+        <a href="index.html#hero" class="nav-avatar-wrap spring-btn" aria-label="Home">
+          <span class="nav-kanji-tag font-mono">改善</span>
+        </a>
+      </div>
+
+      <!-- Center: Navigation Links -->
+      <div class="nav-center">
+        <div class="nav-links">
+          <a href="index.html#hero" class="nav-link" data-nav="hero">
+            <span>Home</span>
+            <span class="active-dot"></span>
+          </a>
+          <a href="index.html#about" class="nav-link" data-nav="about">
+            <span>About</span>
+            <span class="active-dot"></span>
+          </a>
+          <a href="index.html#projects" class="nav-link" data-nav="projects">
+            <span>Projects</span>
+            <span class="active-dot"></span>
+          </a>
+          <a href="index.html#blog" class="nav-link active" data-nav="blog">
+            <span>Blog</span>
+            <span class="active-dot"></span>
+          </a>
+          <a href="index.html#contact" class="nav-link" data-nav="contact">
+            <span>Contact</span>
+            <span class="active-dot"></span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: GitHub Logo, Theme Switcher & Straw Hat Keychain -->
+      <div class="nav-right">
+        <a href="https://github.com/loserharsh" target="_blank" rel="noopener noreferrer" class="nav-github-btn spring-btn" aria-label="GitHub Profile" title="GitHub Profile">
+          <svg class="nav-icon github-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+        </a>
+        <button class="theme-toggle spring-btn" id="themeToggle" aria-label="Toggle Theme" title="Toggle Theme">
+          <svg class="theme-icon icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg class="theme-icon icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+
+        <!-- Hanging Straw Hat Keychain Charm -->
+        <div class="nav-keychain-wrap" id="strawhatKeychain" role="button" tabindex="0" title="Mugiwara // Straw Hat Keychain (Click to jiggle!)" aria-label="Straw Hat Keychain">
+          <div class="keychain-ring"></div>
+          <div class="keychain-chain">
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+          </div>
+          <div class="keychain-hat-charm">
+            <img src="assets/strawhat_transparent.png" alt="Straw Hat Keychain" class="strawhat-img">
+          </div>
+        </div>
+      </div>
+
+    </nav>
+  </header>
+
+  <main>
+    <!-- ==================== POST READER SECTION (IMAGE 2 EDITORIAL) ==================== -->
+    <section id="post-reader" class="post-reader-section">
+      <div class="container post-editorial-container">
+
+        <!-- Top Navigation Row: Back Button & Eyebrow -->
+        <div class="post-top-nav font-mono">
+          <a href="index.html#blog" class="post-back-btn font-mono spring-btn" id="backToBlog" aria-label="Back to Written Chronicles">
+            ← ARCHIVE
+          </a>
+          <span class="post-eyebrow font-mono" id="postEyebrow">FROM START TO FINISH</span>
+        </div>
+
+        <!-- Main Editorial Layout -->
+        <div class="post-editorial-layout anime-scroll-item">
+          
+          <!-- Left Column: Giant Number (e.g. 01) -->
+          <div class="post-giant-num-col">
+            <div class="post-giant-number font-heading" id="postGiantNumber">01</div>
+          </div>
+
+          <!-- Right Column: Line + Title & Body -->
+          <div class="post-main-content-col">
+            <!-- Bold Horizontal Rule (matching Image 2) -->
+            <div class="post-editorial-rule" aria-hidden="true"></div>
+
+            <!-- Two-column split: Title & Metadata on Left, Prose on Right -->
+            <div class="post-body-split-grid">
+              
+              <!-- Title & Subtitle Column -->
+              <div class="post-title-col">
+                <h1 class="post-editorial-title font-heading" id="postTitle">Loading…</h1>
+                <div class="post-editorial-sub font-sans" id="postSubtitle">—</div>
+                <div class="post-meta-badges font-mono" id="postMetaBadges">
+                  <span id="postDate">—</span>
+                  <span class="meta-dot">·</span>
+                  <span id="postReadTime">—</span>
+                </div>
+                <div class="post-tags-row" id="postTags"></div>
+              </div>
+
+              <!-- Editorial Prose Column -->
+              <div class="post-prose-col">
+                <article class="post-body prose font-sans" id="postBody">
+                  <p class="blog-loading font-mono">// LOADING POST...</p>
+                </article>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <span class="footer-copy font-mono">© <span id="currentYear">2026</span> HARSHWARDHAN KAILASIA.</span>
+      <button class="back-to-top font-mono spring-btn" id="backToTop" aria-label="Back to top">
+        <span>RETURN TO TOP ↑</span>
+      </button>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/post.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Reading progress bar script -->
+  <script>
+    (function () {
+      const bar = document.getElementById('readingProgressBar');
+      if (!bar) return;
+      window.addEventListener('scroll', function () {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const pct = docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0;
+        bar.style.width = pct + '%';
+      }, { passive: true });
+    })();
+  </script>
+</body>
+</html>

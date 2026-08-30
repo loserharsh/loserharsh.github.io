@@ -1,0 +1,22 @@
+[
+  {
+    "slug": "hello-world",
+    "title": "Hello, World.",
+    "date": "2026-08-29",
+    "category": "META · INTRO",
+    "tags": ["meta", "intro"],
+    "dots": ["#3b82f6", "#f97316", "#ef4444"],
+    "excerpt": "First post — what this space is for, and what I plan to write about.",
+    "host": true
+  },
+  {
+    "slug": "the-first-build",
+    "title": "THE FIRST BUILD",
+    "date": "2026-08-30",
+    "category": "WEBDEV ",
+    "tags": ["webdev", "portfolio", "development"],
+    "dots": ["#f97316", "#3b82f6"],
+    "excerpt": "The first entry in the log. Building a portfolio, breaking things, and figuring out what the hell I'm doing along the way.",
+    "host": true
+  }
+]
