@@ -132,10 +132,9 @@
         anime.remove(card);
         anime({
           targets: card,
-          translateY: -8,
-          rotate: tiltAngle,
-          scale: 1.012,
-          duration: 600,
+          translateY: -6,
+          scale: 1.02,
+          duration: 500,
           easing: 'easeOutElastic(1, .6)'
         });
       });
@@ -145,9 +144,8 @@
         anime({
           targets: card,
           translateY: 0,
-          rotate: 0,
           scale: 1,
-          duration: 500,
+          duration: 450,
           easing: 'easeOutElastic(1, .5)'
         });
       });
@@ -158,10 +156,10 @@
   function initSpringInteractions() {
     if (typeof anime === 'undefined') return;
 
-    // A. Project Cards Elastic Lift & Alternating Tilt
+    // A. Project Cards Elastic Lift (No Tilt, Enlarge Only)
     initSpringCards();
 
-    // B. Spring Buttons & Links (Squish and Pop)
+    // B. Spring Buttons & Links (Squish and Pop, Enlarge Only)
     const springButtons = document.querySelectorAll('.spring-btn');
     springButtons.forEach((btn) => {
       btn.addEventListener('mouseenter', () => {
@@ -170,7 +168,6 @@
           targets: btn,
           scale: 1.05,
           translateY: -2.5,
-          rotate: -0.6,
           duration: 500,
           easing: 'easeOutElastic(1, .5)'
         });
@@ -182,7 +179,6 @@
           targets: btn,
           scale: 1,
           translateY: 0,
-          rotate: 0,
           duration: 450,
           easing: 'easeOutElastic(1, .5)'
         });
@@ -427,6 +423,183 @@
     }
   }
 
+  // 7. Speculative Preloading on Hover for instantaneous transitions
+  function initSpeculativePreload() {
+    const prefetched = new Set();
+    document.addEventListener('mouseover', (e) => {
+      const link = e.target.closest('a[href]');
+      if (!link) return;
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
+
+      const cleanUrl = href.split('#')[0];
+      if (!cleanUrl || prefetched.has(cleanUrl)) return;
+
+      prefetched.add(cleanUrl);
+      const prefetchTag = document.createElement('link');
+      prefetchTag.rel = 'prefetch';
+      prefetchTag.href = cleanUrl;
+      document.head.appendChild(prefetchTag);
+    }, { passive: true });
+  }
+
+  // 8. Interactive Direct Contact Modal with KokonutUI AI Shimmer Button & Inline Error
+  function initContactModal() {
+    const hugeCta = document.getElementById('hugeCtaLink');
+    const contactModal = document.getElementById('contactModal');
+    const closeContactBtn = document.getElementById('closeContactBtn');
+    const contactForm = document.getElementById('directContactForm');
+    const submitBtn = document.getElementById('submitContactBtn');
+    const btnText = document.getElementById('kokonutBtnText');
+    const inlineError = document.getElementById('contactInlineError');
+
+    if (!contactModal) return;
+
+    function openContactModal() {
+      contactModal.style.display = 'flex';
+      const firstInput = document.getElementById('contactFirstName');
+      if (firstInput) setTimeout(() => firstInput.focus(), 80);
+    }
+
+    function closeContactModal() {
+      contactModal.style.display = 'none';
+      if (inlineError) {
+        inlineError.style.display = 'none';
+        inlineError.innerHTML = '';
+      }
+    }
+
+    if (hugeCta) {
+      hugeCta.addEventListener('click', (e) => {
+        e.preventDefault();
+        openContactModal();
+      });
+    }
+
+    if (closeContactBtn) closeContactBtn.addEventListener('click', closeContactModal);
+
+    contactModal.addEventListener('click', (e) => {
+      if (e.target === contactModal) closeContactModal();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && contactModal.style.display === 'flex') {
+        closeContactModal();
+      }
+    });
+
+    function setAnimatedText(newText) {
+      if (!btnText) return;
+      btnText.classList.add('kokonut-exit');
+      setTimeout(() => {
+        btnText.textContent = newText;
+        btnText.classList.remove('kokonut-exit');
+        btnText.classList.add('kokonut-enter');
+        void btnText.offsetWidth; // trigger reflow
+        btnText.classList.remove('kokonut-enter');
+      }, 250);
+    }
+
+    function setButtonSending() {
+      if (!submitBtn) return;
+      submitBtn.classList.remove('is-success', 'is-failed');
+      submitBtn.classList.add('is-loading');
+      setAnimatedText("Sending...");
+      if (inlineError) {
+        inlineError.style.display = 'none';
+        inlineError.innerHTML = '';
+      }
+    }
+
+    function setButtonSuccess() {
+      if (!submitBtn) return;
+      submitBtn.classList.remove('is-loading', 'is-failed');
+      submitBtn.classList.add('is-success');
+      setAnimatedText("Sent!");
+
+      if (inlineError) {
+        inlineError.style.display = 'none';
+        inlineError.innerHTML = '';
+      }
+
+      if (contactForm) contactForm.reset();
+
+      setTimeout(() => {
+        submitBtn.classList.remove('is-success');
+        setAnimatedText("Send Message");
+      }, 4500);
+    }
+
+    function setButtonFailed(errorMessage, mailtoUrl) {
+      if (!submitBtn) return;
+      submitBtn.classList.remove('is-loading', 'is-success');
+      submitBtn.classList.add('is-failed');
+      setAnimatedText("Failed");
+
+      if (inlineError) {
+        inlineError.style.display = 'inline-flex';
+        inlineError.innerHTML = `⚠ ${errorMessage} ${mailtoUrl ? `(<a href="${mailtoUrl}">mailto</a>)` : ''}`;
+      }
+
+      setTimeout(() => {
+        submitBtn.classList.remove('is-failed');
+        setAnimatedText("Send Message");
+      }, 4500);
+    }
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const firstName = document.getElementById('contactFirstName')?.value.trim() || '';
+        const lastName = document.getElementById('contactLastName')?.value.trim() || '';
+        const name = `${firstName} ${lastName}`.trim() || 'Visitor';
+        const service = document.getElementById('contactService')?.value.trim() || 'Portfolio Inquiry';
+        const email = document.getElementById('contactEmail')?.value.trim();
+        const message = document.getElementById('contactMessage')?.value.trim();
+
+        if (!email || !message) return;
+
+        setButtonSending();
+
+        try {
+          const response = await fetch('https://formsubmit.co/ajax/harshwardhan1617@gmail.com', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+              name,
+              email,
+              _replyto: email,
+              _subject: `[Portfolio Contact] ${service} - from ${name}`,
+              service,
+              message,
+              _template: 'table'
+            })
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+          }
+
+          const data = await response.json();
+          if (data && data.success === 'false') {
+            throw new Error(data.message || 'Submission rejected');
+          }
+
+          setButtonSuccess();
+        } catch (err) {
+          const isFileProtocol = window.location.protocol === 'file:';
+          const errMsg = isFileProtocol ? 'Local file (CORS blocked)' : (err.message || 'Transmission failed');
+          const mailtoUrl = `mailto:harshwardhan1617@gmail.com?subject=${encodeURIComponent(`[Portfolio Contact] ${service} - from ${name}`)}&body=${encodeURIComponent(message)}`;
+          setButtonFailed(errMsg, mailtoUrl);
+        }
+      });
+    }
+  }
+
   // DOM Ready
   document.addEventListener('DOMContentLoaded', () => {
     initTheme();
@@ -435,6 +608,8 @@
     initSpringInteractions();
     initScrollStaggers();
     initVinylPlayer();
+    initSpeculativePreload();
+    initContactModal();
 
     // Trigger hero entrance
     setTimeout(playHeroEntrance, 100);

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
@@ -53,6 +53,10 @@
           </a>
           <a href="#projects" class="nav-link" data-nav="projects">
             <span>Projects</span>
+            <span class="active-dot"></span>
+          </a>
+          <a href="#blog" class="nav-link" data-nav="blog">
+            <span>Blog</span>
             <span class="active-dot"></span>
           </a>
           <a href="#contact" class="nav-link" data-nav="contact">
@@ -219,6 +223,314 @@
       </div>
     </section>
 
+    <!-- ==================== BLOG CHRONICLES ARCHIVE ==================== -->
+    <section id="blog" class="blog-section scroll-section">
+      <div class="container blog-container">
+
+        <!-- Two-column split: Compact Calendar on Left, Main Chronicles on Right -->
+        <div class="blog-layout-split">
+
+          <!-- Left: Calendar Sidebar (Matching User Reference Image) -->
+          <aside class="blog-sidebar-col" aria-label="Calendar Sidebar">
+            <div class="cal-widget-card anime-scroll-item" id="calWidgetCard">
+              
+              <!-- Top Row: Weekly / Monthly / Range segmented toggle & Reset -->
+              <div class="cal-top-row">
+                <div class="cal-seg-toggle" role="tablist" aria-label="Calendar View">
+                  <button type="button" class="cal-seg-btn active" data-cal-view="weekly">Weekly</button>
+                  <button type="button" class="cal-seg-btn" data-cal-view="monthly">Monthly</button>
+                  <button type="button" class="cal-seg-btn" data-cal-view="range">Range</button>
+                </div>
+                <button type="button" class="cal-settings-btn" id="calResetBtn" aria-label="Reset & remove filter" title="Reset / Remove Filter">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                    <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Hero Display: Big Month Name and Day Number (e.g. August 29) -->
+              <div class="cal-hero-date">
+                <span class="cal-hero-month" id="calHeroMonth">August</span>
+                <span class="cal-hero-day" id="calHeroDay">29</span>
+              </div>
+
+              <!-- Range Selector Bar (Visible in Range mode) -->
+              <div class="cal-range-bar" id="calRangeBar" style="display: none;">
+                <span class="cal-range-label" id="calRangeLabel">Click start & end dates</span>
+                <button type="button" class="cal-range-clear" id="calRangeClear">Clear</button>
+              </div>
+
+              <!-- Weekdays Header -->
+              <div class="cal-weekdays" aria-hidden="true">
+                <span>S</span>
+                <span>M</span>
+                <span>T</span>
+                <span>W</span>
+                <span>T</span>
+                <span>F</span>
+                <span>S</span>
+              </div>
+
+              <!-- Days Numbers Grid / Strip -->
+              <div class="cal-days-grid" id="calDaysGrid">
+                <!-- Dynamically rendered via js/blog.js -->
+              </div>
+
+              <!-- Bottom Row (Matching image) -->
+              <div class="cal-bottom-row">
+                <button type="button" class="cal-action-btn font-sans" id="calAllPostsBtn">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                  </svg>
+                  <span>All Chronicles</span>
+                </button>
+
+                <button type="button" class="cal-pill-btn font-sans" id="calTodayBtn">
+                  <span>+ Latest</span>
+                </button>
+              </div>
+
+            </div>
+          </aside>
+
+          <!-- Right: Main Archive Column (Primary Focus) -->
+          <div class="blog-main-col">
+            <div class="archive-terminal-wrap anime-scroll-item">
+              <!-- Top Header Section -->
+              <div class="archive-header font-mono">
+                <div class="archive-title-row">
+                  <h1 class="archive-main-title font-mono">WRITTEN CHRONICLES</h1>
+
+                  <!-- Search Bar (Mura-style Minimalist Underline, Aligned in Center) -->
+                  <div class="archive-search-editorial">
+                    <div class="archive-search-field-wrap">
+                      <input type="text" id="archiveSearchInput" class="archive-search-minimal" placeholder="Search" autocomplete="off" aria-label="Search Chronicles">
+                      <button type="button" id="archiveSearchClear" class="archive-search-clear" aria-label="Clear search" title="Clear search" style="display: none;">×</button>
+                      <svg class="archive-search-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7.5"></circle>
+                        <line x1="21" y1="21" x2="16.5" y2="16.5"></line>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="archive-rule-line" aria-hidden="true"></div>
+
+                <div class="archive-meta-row">
+                  <div class="archive-meta font-mono" id="archiveMeta">
+                    ARCHIVE // <span id="archiveCount">004</span> ENTRIES
+                  </div>
+                  <div class="archive-actions-row">
+                    <button type="button" class="archive-action-btn font-mono" id="openComposerBtn" title="Write or import a markdown post">
+                      + WRITE / IMPORT
+                    </button>
+                    <div class="archive-active-filter font-mono" id="archiveActiveFilter">
+                      ACTIVE // <span id="calFilterName">ALL CHRONICLES</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Chronological List of Entries (Rendered via js/blog.js) -->
+              <div class="archive-list font-mono" id="blogArchiveList">
+                <!-- Content dynamically rendered from js/blog.js -->
+              </div>
+
+              <!-- Bottom Footer Section -->
+              <div class="archive-footer font-mono">
+                <div class="archive-rule-line" aria-hidden="true"></div>
+                <div class="archive-end-text">
+                  END OF TRANSMISSION
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Chronicle Composer & Importer Modal (Floating Card Style) -->
+      <div class="composer-modal-overlay" id="composerModal" style="display: none;" aria-hidden="true" role="dialog" aria-label="Write or Import Chronicle">
+        <!-- Floating Architectural Editorial Card -->
+        <div class="composer-card font-sans">
+          <button type="button" class="composer-close-btn" id="closeComposerBtn" aria-label="Close modal">×</button>
+
+            <!-- 3-Element Grid: Left Column, Divider, Right Column -->
+            <div class="composer-split-grid">
+              
+              <!-- Left Column: Display Title & Ready Statement -->
+              <div class="composer-split-left">
+                <h3 class="composer-display-title font-heading">
+                  Draft A<br>
+                  Chronicle<br>
+                  Post
+                </h3>
+
+                <div class="composer-left-bottom">
+                  <span class="composer-left-eyebrow font-heading">READY TO ELEVATE YOUR CHRONICLES?</span>
+                  <p class="composer-left-desc font-sans">
+                    We'll help you create clean, scroll-stopping chronicles that shine.<br>
+                    Submit your info — preview locally or download to publish.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Thin Vertical Divider Line -->
+              <div class="composer-split-divider" aria-hidden="true"></div>
+
+              <!-- Right Column: Minimalist Underline Form -->
+              <div class="composer-split-right">
+                
+                <!-- Tab Controls -->
+                <div class="composer-minimal-tabs font-mono">
+                  <button type="button" class="composer-tab-btn active" data-tab="write">Write</button>
+                  <span class="composer-tab-sep">/</span>
+                  <button type="button" class="composer-tab-btn" data-tab="import">Import .MD File</button>
+                </div>
+
+                <!-- Tab 1: Write Form -->
+                <form id="composerForm" class="composer-tab-pane active" data-pane="write">
+                  
+                  <div class="composer-line-field">
+                    <input type="text" id="postTitleInput" required placeholder="Title*" autocomplete="off">
+                  </div>
+
+                  <div class="composer-line-field">
+                    <input type="text" id="postCategoryInput" placeholder="Category (Webdev / Anime / Tools / Tech / Other)" autocomplete="off">
+                  </div>
+
+                  <div class="composer-line-field">
+                    <input type="text" id="postTagsInput" placeholder="Tags (comma-separated, e.g. web, design)" autocomplete="off">
+                  </div>
+
+                  <div class="composer-split-row">
+                    <div class="composer-line-field flex-1">
+                      <input type="date" id="postDateInput" required title="Publication Date">
+                    </div>
+                    <div class="composer-line-field flex-1">
+                      <input type="text" id="postExcerptInput" placeholder="Short preview excerpt..." autocomplete="off">
+                    </div>
+                  </div>
+
+                  <div class="composer-line-field composer-textarea-wrap">
+                    <textarea id="postContentInput" rows="5" required placeholder="Markdown content*&#10;&#10;Write your chronicle in markdown here..."></textarea>
+                  </div>
+
+                  <div class="composer-actions-bar">
+                    <button type="button" class="composer-flat-btn secondary" id="downloadMdBtn">Download .MD</button>
+                    <button type="submit" class="composer-flat-btn primary">Send</button>
+                  </div>
+                </form>
+
+                <!-- Tab 2: Import File -->
+                <div class="composer-tab-pane" data-pane="import" style="display: none;">
+                  <div class="composer-dropzone" id="composerDropzone">
+                    <input type="file" id="importMdFileInput" accept=".md,.markdown,.txt" style="display: none;">
+                    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="dropzone-ic">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="17 8 12 3 7 8"></polyline>
+                      <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <p class="dropzone-text font-sans">Click or drag &amp; drop a <code>.md</code> markdown file</p>
+                    <span class="dropzone-sub font-sans">Automatically parses title, date, excerpt, and content</span>
+                    <button type="button" class="composer-flat-btn secondary" id="triggerFilePicker">Choose Markdown File</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Contact Me Modal (Matching User Reference Photo) -->
+        <div class="composer-modal-overlay contact-modal-overlay" id="contactModal" style="display: none;" aria-hidden="true" role="dialog" aria-label="Contact Me">
+          <div class="composer-card contact-card font-sans">
+            <button type="button" class="composer-close-btn" id="closeContactBtn" aria-label="Close modal">×</button>
+
+            <!-- Top Giant Title -->
+            <div class="contact-modal-header">
+              <h2 class="contact-giant-title font-heading">Contact me</h2>
+            </div>
+
+            <!-- 2-Column Split: Left Info, Divider, Right Form -->
+            <div class="composer-split-grid contact-split-grid">
+              
+              <!-- Left Info Column -->
+              <div class="composer-split-left contact-split-left">
+                <div class="contact-left-top">
+                  <div class="contact-info-block">
+                    <span class="contact-info-label font-mono">LOCATION</span>
+                    <p class="contact-info-val font-sans">India · Global Remote<br>2026</p>
+                  </div>
+
+                  <div class="contact-info-block">
+                    <span class="contact-info-label font-mono">AVAILABILITY</span>
+                    <p class="contact-info-val font-sans">Open for software engineering, web design &amp; collaborations.</p>
+                  </div>
+                </div>
+
+                <div class="contact-left-bottom">
+                  <span class="contact-info-label font-mono">DIRECT INQUIRIES</span>
+                  <a href="mailto:harshwardhan1617@gmail.com" class="contact-direct-email font-heading">harshwardhan1617@gmail.com</a>
+                </div>
+              </div>
+
+              <!-- Thin Vertical Divider Line -->
+              <div class="composer-split-divider" aria-hidden="true"></div>
+
+              <!-- Right Form Column -->
+              <div class="composer-split-right contact-split-right">
+                <!-- Silent Iframe for CORS-free submission -->
+                <iframe name="contact_hidden_iframe" id="contactHiddenIframe" style="display: none;" aria-hidden="true"></iframe>
+
+                <form id="directContactForm" action="https://formsubmit.co/harshwardhan1617@gmail.com" method="POST" target="contact_hidden_iframe" class="contact-ajax-form">
+                  <input type="hidden" name="_captcha" value="false">
+                  <input type="hidden" name="_template" value="table">
+                  <input type="hidden" name="_subject" id="hiddenFormSubject" value="[Portfolio Contact] New Inquiry">
+
+                  <span class="contact-form-legend font-mono">NAME (REQUIRED)</span>
+                  <div class="composer-split-row">
+                    <div class="composer-line-field flex-1">
+                      <input type="text" id="contactFirstName" name="firstName" required placeholder="First Name*" autocomplete="given-name">
+                    </div>
+                    <div class="composer-line-field flex-1">
+                      <input type="text" id="contactLastName" name="lastName" placeholder="Last Name" autocomplete="family-name">
+                    </div>
+                  </div>
+
+                  <div class="composer-line-field">
+                    <input type="text" id="contactService" name="service" placeholder="Service / Subject (e.g. Web Development / Creative Dev / Chat)" autocomplete="off">
+                  </div>
+
+                  <div class="composer-line-field">
+                    <input type="email" id="contactEmail" name="email" required placeholder="Your Email (required)*" autocomplete="email">
+                  </div>
+
+                  <div class="composer-line-field composer-textarea-wrap">
+                    <textarea id="contactMessage" name="message" rows="4" required placeholder="Project description / Message*"></textarea>
+                  </div>
+
+                  <!-- Action Bar with KokonutUI AI Shimmer Button + Inline Error to the Right -->
+                  <div class="composer-actions-bar contact-actions-row">
+                    <button type="submit" class="composer-flat-btn kokonut-ai-btn primary font-sans" id="submitContactBtn">
+                      <span class="kokonut-btn-text" id="kokonutBtnText">Send Message</span>
+                    </button>
+                    <span class="contact-inline-error font-mono" id="contactInlineError" style="display: none;" aria-live="polite"></span>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </section>
+
     <!-- ==================== CONTACT SECTION ==================== -->
     <section id="contact" class="contact-section scroll-section">
       <div class="container contact-container">
@@ -231,11 +543,11 @@
 
         <!-- Big Spring CTA with Wave Letter Physics -->
         <div class="huge-cta-wrap anime-scroll-item">
-          <a href="mailto:harshwardhan1617@gmail.com?subject=Project%20Inquiry" class="huge-cta-link spring-cta" id="hugeCtaLink">
+          <button type="button" class="huge-cta-link spring-cta" id="hugeCtaLink" aria-label="Open contact form">
             <span class="cta-letter">L</span><span class="cta-letter">E</span><span class="cta-letter">T</span><span class="cta-letter">'</span><span class="cta-letter">S</span>
             <span class="cta-space">&nbsp;</span>
             <span class="cta-letter accent-letter">T</span><span class="cta-letter accent-letter">A</span><span class="cta-letter accent-letter">L</span><span class="cta-letter accent-letter">K</span>
-          </a>
+          </button>
         </div>
 
         <!-- Social Links -->
@@ -330,6 +642,7 @@
   <!-- Scripts -->
   <script src="js/projects.js"></script>
   <script src="js/terminal.js"></script>
+  <script src="js/blog.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
