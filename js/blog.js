@@ -12,6 +12,16 @@
   // Baseline fallback posts (when offline or file:// protocol prevents fetch)
   const DEFAULT_POSTS = [
     {
+      slug: 'the-first-build',
+      title: 'THE FIRST BUILD',
+      date: '2026-08-30',
+      category: 'WEBDEV',
+      tags: ['webdev', 'portfolio', 'development'],
+      dots: ['#f97316', '#3b82f6'],
+      excerpt: "The first entry in the log. Building a portfolio, breaking things, and figuring out what the hell I'm doing along the way.",
+      host: true
+    },
+    {
       slug: 'hello-world',
       title: 'Hello, World.',
       date: '2026-08-29',
@@ -19,36 +29,6 @@
       tags: ['meta', 'intro'],
       dots: ['#3b82f6', '#f97316', '#ef4444'],
       excerpt: 'First post — what this space is for, and what I plan to write about.',
-      host: true
-    },
-    {
-      slug: 'building-this-site',
-      title: 'Building This Site From Scratch',
-      date: '2026-08-25',
-      category: 'WEBDEV · CSS · DESIGN',
-      tags: ['webdev', 'css', 'design'],
-      dots: ['#f97316', '#3b82f6'],
-      excerpt: 'No frameworks. No templates. Just HTML, CSS, and a lot of anime references. Here\'s how it came together.',
-      host: true
-    },
-    {
-      slug: 'why-i-like-terminal',
-      title: 'Why I Live in the Terminal',
-      date: '2026-07-20',
-      category: 'TOOLS · LINUX · PRODUCTIVITY',
-      tags: ['tools', 'linux', 'productivity'],
-      dots: ['#10b981', '#3b82f6'],
-      excerpt: 'Most people avoid the terminal. I\'ve made it my home. Here\'s what I use and why it beats clicking through menus.',
-      host: true
-    },
-    {
-      slug: 'anime-that-got-me-into-cs',
-      title: 'The Anime That Got Me Into CS',
-      date: '2026-07-10',
-      category: 'ANIME · PERSONAL',
-      tags: ['anime', 'personal'],
-      dots: ['#ec4899', '#f97316'],
-      excerpt: 'Sounds ridiculous. But hear me out — a handful of shows genuinely shaped how I think about code and problem-solving.',
       host: true
     }
   ];
