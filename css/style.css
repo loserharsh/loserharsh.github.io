@@ -1176,256 +1176,510 @@ button {
 }
 
 /* ==========================================================================
-   3. PROJECTS SECTION (PHYSICAL HANGTAG SPEC CARDS)
+   3. PROJECTS SECTION (DIAGONAL HORIZONTAL CARD SHOWCASE — OFFF CDMX STYLE)
    ========================================================================== */
-.projects-section {
+.projects-showcase-section {
+  --card-skew: -34deg;
+  --card-unskew: 34deg;
+  --card-base-w: 135px;
+  --mid-section-w: 54vw;
+  --card-expand-delta: calc(var(--mid-section-w) - var(--card-base-w));
+  --card-overhang: 280px;
   position: relative;
-  padding-block: 7.5rem;
+  width: 100%;
+  height: 88vh;
+  min-height: 580px;
+  max-height: 860px;
+  padding-block: 0;
+  background-color: #040507;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
   border-top: none;
 }
 
-.section-header-wrap {
-  margin-bottom: 2.5rem;
+/* Atmospheric Top & Bottom Seamless Vignette Blends (Reduced scattering) */
+.showcase-vignette-top,
+.showcase-vignette-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 18%;
+  min-height: 125px;
+  pointer-events: none;
+  z-index: 12;
+  transition: opacity 0.4s ease;
 }
 
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.75rem;
+.projects-showcase-section.has-expanded-card .showcase-vignette-top,
+.projects-showcase-section.has-expanded-card .showcase-vignette-bottom {
+  opacity: 0.15;
 }
 
-.card-span-2 {
-  grid-column: span 2;
+.showcase-vignette-top {
+  top: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--bg-primary, #0a0b0e) 0%,
+    rgba(10, 11, 14, 0.92) 20%,
+    rgba(10, 11, 14, 0.50) 50%,
+    rgba(10, 11, 14, 0.12) 80%,
+    transparent 100%
+  );
 }
 
-/* Physical Hangtag Spec Tag Card */
-.project-spec-tag {
-  position: relative;
+.showcase-vignette-bottom {
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    var(--bg-primary, #0a0b0e) 0%,
+    rgba(10, 11, 14, 0.92) 20%,
+    rgba(10, 11, 14, 0.50) 50%,
+    rgba(10, 11, 14, 0.12) 80%,
+    transparent 100%
+  );
+}
+
+.showcase-vignette-sides {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 11;
+  background: radial-gradient(
+    ellipse 85% 75% at 50% 50%,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(4, 5, 7, 0.78) 100%
+  );
+  transition: opacity 0.4s ease;
+}
+
+.projects-showcase-section.has-expanded-card .showcase-vignette-sides {
+  opacity: 0.3;
+}
+
+
+/* Centered Overlay Typography (Matches "Making Of / OFFF CDMX MAIN TITLES / 2016") */
+.showcase-center-hud {
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.65rem;
-  padding: 2.25rem 2.5rem 2rem;
-  border-radius: var(--radius-sm);
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-card);
-  box-shadow: 0 12px 36px -6px rgba(0, 0, 0, 0.45);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+  z-index: 25;
+  padding-inline: 1.5rem;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease;
+}
+
+.projects-showcase-section.has-expanded-card .showcase-center-hud {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-20px) scale(0.9);
+}
+
+.showcase-hud-eyebrow {
+  font-size: clamp(0.78rem, 1.05vw, 0.95rem);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.showcase-hud-title {
+  font-size: clamp(1.55rem, 3.3vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: 0.26em;
+  padding-left: 0.26em; /* Optical center compensation for wide tracking */
+  text-transform: uppercase;
+  color: #ffffff;
+  line-height: 1.15;
+  margin: 0;
+  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.98), 0 2px 8px rgba(0, 0, 0, 0.95);
+  transition: opacity 0.25s ease, transform 0.25s ease, color 0.25s ease;
+}
+
+.showcase-hud-sub {
+  font-size: clamp(0.86rem, 1.2vw, 1.08rem);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  padding-left: 0.24em;
+  color: rgba(255, 255, 255, 0.92);
+  margin-top: 0.65rem;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.9);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Viewport & Moving Horizontal Track */
+.showcase-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  transform-origin: center center;
-  will-change: transform, border-color, box-shadow;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
-}
-
-.project-spec-tag:hover {
-  border-color: var(--border-hover);
-  box-shadow: 0 0 30px var(--color-accent-glow);
-  transform: translateY(-3px);
-}
-
-/* Grommet Eyelet & Cord String */
-.tag-eyelet-wrap {
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
   display: flex;
   align-items: center;
-  pointer-events: none;
-  z-index: 3;
+  z-index: 5;
 }
 
-.tag-eyelet {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: #000;
-  border: 4.5px solid #475569;
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.9), 0 1px 2px rgba(255, 255, 255, 0.2);
+.showcase-track {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  will-change: transform;
+  padding-block: 4vh;
+}
+
+/* Individual Diagonal Slanted Card (54° from X-axis via skewX(-36deg)) */
+.showcase-card {
+  --shift-x: 0px;
+  --hover-lift-y: 0px;
+  position: relative;
+  flex: 0 0 auto;
+  width: var(--card-base-w);
+  height: 76vh;
+  min-height: 520px;
+  max-height: 760px;
+  margin-right: -2px; /* Seamless diagonal border join */
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #0b0d13;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: -10px 0 28px rgba(0, 0, 0, 0.75);
+  transform: translate3d(var(--shift-x), var(--hover-lift-y), 0) skewX(var(--card-skew));
+  transform-origin: center center;
+  transition:
+    width 0.68s cubic-bezier(0.22, 1, 0.36, 1),
+    margin-right 0.68s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.68s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease,
+    box-shadow 0.35s ease;
+  z-index: 2;
+  /* Alpha mask completely dissolves top & bottom edges of closed cards into pure transparency */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.4) 6%,
+    black 15%,
+    black 85%,
+    rgba(0, 0, 0, 0.4) 94%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.4) 6%,
+    black 15%,
+    black 85%,
+    rgba(0, 0, 0, 0.4) 94%,
+    transparent 100%
+  );
+}
+
+.showcase-card.is-expanded {
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}
+
+/* Inner Container inside the Slanted Card (Keeps the Card Angle) */
+.showcase-card-inner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Split Postcard Container inside the Slanted Card */
+.showcase-split-wrap {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+/* Art Column (Vertical Bookmark Image Tilted to Match the Angle) */
+.card-art-col {
+  position: relative;
+  width: var(--card-base-w);
+  height: 100%;
+  flex-shrink: 0;
+  overflow: hidden;
+  background-color: #0c0e14;
+}
+
+.showcase-card-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  filter: grayscale(35%) brightness(0.72) contrast(1.1);
+  transform: scale(1.05);
+  /* The image tilts with the card angle */
+  transition:
+    filter 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.showcase-card-sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(4, 5, 7, 0.45) 0%,
+    rgba(0, 0, 0, 0) 25%,
+    rgba(0, 0, 0, 0) 75%,
+    rgba(4, 5, 7, 0.45) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Postcard / Ticket Description Column (Spacious layout covering the middle section) */
+.card-info-col {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  background-color: #f0eee9; /* Tactile Warm Cardstock matching photo */
+  color: #0c0e14;
+  border-left: 1px solid rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3.5rem 5.5rem;
+  box-sizing: border-box;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+  box-shadow: inset 0 0 45px rgba(0, 0, 0, 0.05);
+  transition: opacity 0.12s ease 0s;
+  order: 2;
+}
+
+[data-theme="dark"] .card-info-col {
+  background-color: #edebe6; /* Crisp tactile cardstock in dark mode for gallery contrast */
+  color: #090b10;
+}
+
+.showcase-card.is-expanded .card-info-col {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.35s ease 0.15s;
+}
+
+/* When expanding to the left: Info on left (order: 1), Artwork on right (order: 2) */
+.showcase-card.expand-left .card-info-col {
+  order: 1;
+  border-left: none;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.showcase-card.expand-left .card-art-col {
+  order: 2;
+}
+
+/* When expanding to the right: Artwork on left (order: 1), Info on right (order: 2) */
+.showcase-card.expand-right .card-art-col {
+  order: 1;
+}
+
+.showcase-card.expand-right .card-info-col {
+  order: 2;
+  border-left: 1px solid rgba(0, 0, 0, 0.12);
+  border-right: none;
+}
+
+/* Ticket Card Layout (Matching media_1792171630281.jpg: Big Name on Top + Description on Right) */
+.ticket-card-layout {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: skewX(var(--card-unskew));
+  transform-origin: center center;
+}
+
+/* Typographic Column matching the user reference photo with fixed width so text never reflows or squishes */
+.ticket-text-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  width: 500px;
+  min-width: 500px;
+  max-width: 500px;
   flex-shrink: 0;
 }
 
-.tag-string-svg {
-  width: 140px;
-  height: 60px;
-  margin-left: -6px;
-  color: #94a3b8;
-  opacity: 0.75;
-  transform: rotate(-4deg);
-}
-
-/* Top Meta Header */
-.tag-top-header {
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  color: var(--text-muted);
-  padding-bottom: 0.85rem;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-/* Hero Row (Time + Name) */
-.tag-hero-row {
+.ticket-header-meta {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: flex-start;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 0.85rem;
 }
 
-.tag-time-group {
-  display: flex;
-  align-items: baseline;
-  gap: 0.75rem;
-}
-
-.tag-time-val {
-  font-size: clamp(3.2rem, 5.5vw, 5.2rem);
-  font-weight: 800;
-  line-height: 0.88;
-  color: var(--text-primary);
-  letter-spacing: -0.04em;
-}
-
-.tag-time-unit {
-  font-size: 1.25rem;
+.ticket-lang-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   font-weight: 700;
-  color: var(--text-muted);
-  letter-spacing: 0.04em;
-}
-
-.tag-project-meta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.35rem;
-  padding-right: 3rem; /* Leave room for eyelet */
-}
-
-.tag-glyph-stamp {
-  font-size: 1.15rem;
-  letter-spacing: 0.25em;
-  color: var(--color-accent);
-}
-
-.tag-name-col {
-  display: flex;
-  flex-direction: column;
-}
-
-.tag-meta-lbl {
-  font-size: 0.62rem;
-  letter-spacing: 0.15em;
-  color: var(--text-muted);
-}
-
-.tag-project-name {
-  font-size: clamp(1.25rem, 2vw, 1.6rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-primary);
-  line-height: 1.15;
+  color: #52525b;
 }
 
-.tag-spec-sub {
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  color: var(--color-accent);
-  margin-top: 0.2rem;
-}
-
-/* Middle 4-Column Breakdown Row */
-.tag-breakdown-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  padding-top: 1.15rem;
-  border-top: 1px solid var(--border-subtle);
-}
-
-.breakdown-col {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.b-lbl {
-  font-size: 0.62rem;
-  color: var(--text-muted);
-  letter-spacing: 0.08em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.b-val {
-  font-size: 0.9rem;
+.ticket-serial-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   font-weight: 700;
-  color: var(--text-primary);
+  letter-spacing: 0.08em;
+  color: #a1a1aa;
 }
 
-/* Bottom Segmented Language Bar Graph */
-.tag-lang-graph {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-top: 0.25rem;
-}
-
-.lang-bar-segments {
-  width: 100%;
-  height: 28px;
-  display: flex;
-  gap: 5px;
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-}
-
-.lang-seg {
-  height: 100%;
-  border-radius: 2px;
-  transition: opacity 0.2s ease;
-}
-
-.lang-seg.seg-primary {
-  background-color: #ff5722; /* Vivid Orange like reference */
-  box-shadow: 0 0 12px rgba(255, 87, 34, 0.4);
-}
-
-.lang-seg.seg-secondary {
-  background-color: #4b5563;
-}
-
-.lang-seg.seg-accent {
-  background-color: #79a6dc; /* Dull Blue Accent */
-}
-
-.lang-seg.seg-muted {
-  background-color: #27272a;
-}
-
-.lang-bar-legend {
-  display: flex;
-  gap: 5px;
-  width: 100%;
-}
-
-.legend-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  min-width: 40px;
-}
-
-.leg-percent {
-  font-size: 0.88rem;
+/* Project Name on Top: Much larger than description, Space Grotesk font from page */
+.ticket-title {
+  font-family: var(--font-heading) !important;
+  font-size: clamp(1.85rem, 2.6vw, 2.85rem);
   font-weight: 800;
-  color: var(--text-primary);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  color: #090b10;
+  margin: 0 0 1rem 0;
+  white-space: nowrap;
 }
 
-.leg-lang {
-  font-size: 0.62rem;
-  color: var(--text-muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+/* GitHub Description: Clean, proportional ratio below title */
+.ticket-desc {
+  font-family: var(--font-sans) !important;
+  font-size: clamp(0.92rem, 1.05vw, 1.05rem);
+  font-weight: 450;
+  line-height: 1.65;
+  color: #3f3f46;
+  margin: 0 0 1.75rem 0;
+  width: 500px;
+  max-width: 500px;
+}
+
+/* Action Link and Close */
+.ticket-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.ticket-link-btn {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #090b10;
+  color: #ffffff;
+  padding: 0.6rem 1.4rem;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.ticket-link-btn:hover {
+  background: #252e42;
+  transform: translateY(-1px);
+}
+
+.ticket-close-btn {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.08);
+  border: none;
+  color: #090b10;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 5;
+}
+
+.ticket-close-btn:hover {
+  background: rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+}
+
+/* Openable card pointer cursor (Only middle section cards can open) */
+.showcase-card[data-can-open="true"] {
+  cursor: pointer;
+}
+
+/* Hover Highlight States (Only active for cards currently in middle open section) */
+.showcase-card[data-can-open="true"].is-hovered {
+  --hover-lift-y: -6px;
+  z-index: 8;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.showcase-card[data-can-open="true"].is-hovered .showcase-card-bg {
+  filter: grayscale(0%) brightness(0.9) contrast(1.1);
+  transform: scale(1.02);
+}
+
+/* Right-of-Midline Hover Highlight */
+.showcase-card[data-can-open="true"].is-hovered[data-side="right"] {
+  border-right-color: var(--color-accent);
+  box-shadow:
+    14px 0 36px rgba(121, 166, 220, 0.28),
+    -10px 0 28px rgba(0, 0, 0, 0.85);
+}
+
+/* Left-of-Midline and Mid Hover Highlight */
+.showcase-card[data-can-open="true"].is-hovered[data-side="left"],
+.showcase-card[data-can-open="true"].is-hovered[data-side="mid"] {
+  border-left-color: var(--color-accent);
+  box-shadow:
+    -14px 0 36px rgba(121, 166, 220, 0.28),
+    10px 0 28px rgba(0, 0, 0, 0.85);
+}
+
+/* ==========================================================================
+   CARD EXPANSION COVERING FULL MIDDLE SECTION (20-25% from left to 20-25% from right)
+   ========================================================================== */
+.showcase-card.is-expanded {
+  --hover-lift-y: 0px;
+  width: var(--mid-section-w, 56vw);
+  z-index: 14;
+  border-color: rgba(121, 166, 220, 0.65);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.92), 0 0 32px rgba(121, 166, 220, 0.22);
+  cursor: default;
+}
+
+.showcase-card.is-expanded .showcase-card-bg {
+  filter: grayscale(0%) brightness(0.85) contrast(1.1);
+  transform: scale(1);
+}
+
+/* Subtly dim non-expanded cards so the active ticket pops, while keeping pine bookmarks clear */
+.projects-showcase-section.has-expanded-card .showcase-card:not(.is-expanded) .showcase-card-bg {
+  filter: grayscale(35%) brightness(0.5) contrast(1.05);
+  opacity: 0.85;
 }
 
 /* ==========================================================================
@@ -1839,12 +2093,16 @@ button {
     display: none; /* Hide large ASCII art on small tablet / mobile for clean readability */
   }
 
-  .projects-grid {
-    grid-template-columns: 1fr;
+  .projects-showcase-section {
+    --card-base-w: 165px;
+    --card-expand-delta: 280px;
+    --card-overhang: 240px;
+    height: 82vh;
+    min-height: 540px;
   }
 
-  .card-span-2 {
-    grid-column: span 1;
+  .showcase-card-preview {
+    padding: 1.35rem 1.25rem;
   }
 }
 

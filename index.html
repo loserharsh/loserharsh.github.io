@@ -202,25 +202,29 @@
       </div>
     </section>
 
-    <!-- ==================== PROJECTS SECTION ==================== -->
-    <section id="projects" class="projects-section scroll-section">
-      <div class="container">
-        <div class="section-header-wrap">
-          <div class="section-label font-mono anime-scroll-item">
-            <span>FEATURED PROJECTS</span>
-          </div>
-          <div class="projects-title-row">
-            <h2 class="section-heading font-heading anime-scroll-item">
-              SELECTED <span class="text-accent">CHRONICLES</span>
-            </h2>
-          </div>
-        </div>
+    <!-- ==================== PROJECTS SECTION (DIAGONAL HORIZONTAL CARD SHOWCASE) ==================== -->
+    <section id="projects" class="projects-section projects-showcase-section scroll-section" aria-label="Featured Projects Showcase">
+      
+      <!-- Top & Bottom Atmospheric Vignette Blends -->
+      <div class="showcase-vignette-top" aria-hidden="true"></div>
+      <div class="showcase-vignette-bottom" aria-hidden="true"></div>
+      <div class="showcase-vignette-sides" aria-hidden="true"></div>
 
-        <!-- Project Spec Tag Grid (Dynamically Rendered via js/projects.js) -->
-        <div class="projects-grid" id="projectsGrid">
-          <!-- Content dynamically rendered from js/projects.js -->
+
+      <!-- Centered Overlay Typography (Matches Reference Image: Top Eyebrow, Main Wide Title, Year/Sub) -->
+      <div class="showcase-center-hud" id="showcaseCenterHud" aria-live="polite">
+        <span class="showcase-hud-eyebrow font-sans" id="showcaseHudEyebrow">Featured Projects</span>
+        <h2 class="showcase-hud-title font-heading" id="showcaseHudTitle">SELECTED CHRONICLES</h2>
+        <span class="showcase-hud-sub font-heading" id="showcaseHudSub">2026</span>
+      </div>
+
+      <!-- Full-Bleed Horizontal Diagonal Track Viewport -->
+      <div class="showcase-viewport" id="projectsShowcaseViewport">
+        <div class="showcase-track" id="projectsGrid">
+          <!-- Slanted Project Cards dynamically rendered & animated via js/projects.js -->
         </div>
       </div>
+
     </section>
 
     <!-- ==================== BLOG CHRONICLES ARCHIVE ==================== -->
