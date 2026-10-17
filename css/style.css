@@ -7,40 +7,51 @@
    🎨 COLOR CONFIGURATION PALETTE (:root)
    ========================================================================== */
 :root {
-  /* ------------------ DARK MODE (HIGH CONTRAST B&W + DULL BLUE ACCENT) ------------------ */
-  --bg-primary: #0a0b0e;          /* Deep Matte Black */
-  --bg-surface: #121318;          /* Surface Card */
-  --bg-surface-hover: #181a22;    /* Card Hover */
-  --bg-nav: rgba(10, 11, 14, 0.75);/* Air Navbar */
+  /* ------------------ DARK MODE (OBSIDIAN BLACK + CINEMATIC TEAL + ICE BLUE) ------------------ */
+  /* Backgrounds */
+  --bg-primary: #080D10;          /* Obsidian Black — Deep black with subtle blue undertone */
+  --bg-secondary: #10191E;        /* Charcoal Slate — Secondary surfaces & cards */
+  --bg-surface: #10191E;          /* Charcoal Slate */
+  --bg-surface-hover: #142229;    /* Deep Slate Card Hover */
+  --bg-nav: rgba(8, 13, 16, 0.82);/* Air Navbar */
 
-  /* Text Colors */
-  --text-primary: #f3f4f6;        /* High-Contrast White */
-  --text-secondary: #94a3b8;      /* Slate Gray */
-  --text-muted: #536077;          /* Muted Gray */
-  --text-inverse: #0a0b0e;        /* Inverse */
+  /* Brand Accents */
+  --accent-primary: #367E98;      /* Cinematic Teal — Signature accent */
+  --accent-light: #A8C8D7;        /* Ice Blue — Subtle highlights & details */
+  --accent-deep: #244657;         /* Deep Ocean — Subtle borders & pill outlines */
+  --color-accent: #367E98;        /* Cinematic Teal */
+  --color-accent-hover: #A8C8D7;  /* Ice Blue */
+  --color-accent-glow: rgba(54, 126, 152, 0.28);
 
-  /* Accent Color (Dull Blue / Steel Tone) */
-  --color-accent: #79a6dc;        /* Dull Blue */
-  --color-accent-hover: #96beee;
-  --color-accent-glow: rgba(121, 166, 220, 0.2);
+  /* Typography */
+  --text-primary: #E9EDF0;        /* Cloud White — Main headings & high-contrast text */
+  --text-secondary: #91A0A9;      /* Mist Grey — Paragraphs, subtitles, captions */
+  --text-muted: #5A6D78;          /* Muted Grey */
+  --text-inverse: #080D10;        /* Inverse */
+
+  /* Borders & Effects */
+  --border-subtle: rgba(168, 200, 215, 0.22);
+  --border-strong: rgba(54, 126, 152, 0.65);
+  --border-card: rgba(168, 200, 215, 0.14);
+  --border-hover: rgba(54, 126, 152, 0.85);
+
+  /* Surface Elements */
+  --pill-bg: #142229;
+  --selection-bg: #367E98;
+  --selection-text: #FFFFFF;
 
   /* Scrollbar Variables (Theme Adaptive) */
-  --scrollbar-track: rgba(10, 11, 14, 0.95);
-  --scrollbar-thumb: rgba(255, 255, 255, 0.18);
-  --scrollbar-thumb-hover: #4ade80;
-  --scrollbar-thumb-glow: rgba(74, 222, 128, 0.4);
+  --scrollbar-track: rgba(8, 13, 16, 0.95);
+  --scrollbar-thumb: #244657;
+  --scrollbar-thumb-hover: #367E98;
+  --scrollbar-thumb-glow: rgba(54, 126, 152, 0.45);
 
   /* macOS Traffic Light Dots */
   --macos-red: #ff5f56;
   --macos-yellow: #ffbd2e;
   --macos-green: #27c93f;
 
-  /* Borders & Dividers */
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-card: rgba(255, 255, 255, 0.12);
-  --border-hover: rgba(121, 166, 220, 0.7);
-
-  /* Fonts (Original Requested Fonts) */
+  /* Fonts */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
@@ -129,6 +140,11 @@ html {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-text);
 }
 
 body {
