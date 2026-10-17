@@ -40,8 +40,8 @@
   padding-block: 4rem 5rem;
   overflow: hidden;
   z-index: 10;
-  border-top: 1px solid var(--editorial-line);
-  border-bottom: 1px solid var(--editorial-line);
+  border-top: none;
+  border-bottom: none;
 }
 
 /* Subtle Film-Grain / Paper Texture Overlay */
