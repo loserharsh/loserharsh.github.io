@@ -3,18 +3,18 @@
    ========================================================================== */
 
 :root {
-  /* Dark Editorial Palette (Obsidian & Cinematic Teal) */
-  --editorial-bg: #080D10;          /* Obsidian Black */
-  --editorial-card: #0C1419;        /* Deep Slate Card Surface */
-  --editorial-pill: #101C24;        /* Dark Slate Pill Surface */
-  --editorial-pill-hover: #162631;  /* Dark Slate Pill Hover */
-  --editorial-pill-border: rgba(168, 200, 215, 0.22);
-  --editorial-ink: #E9EDF0;         /* Cloud White Heading / Primary */
-  --editorial-ink-secondary: #91A0A9; /* Mist Grey Body & Captions */
-  --editorial-ink-muted: #5A6D78;   /* Muted Slate */
-  --editorial-line: rgba(168, 200, 215, 0.22); /* Subtle Ice Blue Line */
+  /* Dark Editorial Palette (Pure Black #000000 & Crisp White) */
+  --editorial-bg: #000000;          /* Pure Black matching Homepage */
+  --editorial-card: #080808;        /* Pure Deep Black Card Surface */
+  --editorial-pill: #0e0e0e;        /* Dark Pill Surface */
+  --editorial-pill-hover: #181818;  /* Dark Pill Hover */
+  --editorial-pill-border: rgba(255, 255, 255, 0.16);
+  --editorial-ink: #FFFFFF;         /* Pure Bright Crisp White Heading / Primary */
+  --editorial-ink-secondary: #B8C7D1; /* Brighter, high-contrast mist white */
+  --editorial-ink-muted: #8296A4;   /* Clean Muted Slate */
+  --editorial-line: rgba(255, 255, 255, 0.14); /* Subtle Divider Line */
   --editorial-teal: #367E98;        /* Cinematic Teal */
-  --editorial-ice-blue: #A8C8D7;    /* Ice Blue Accent */
+  --editorial-ice-blue: #C4E2F2;    /* Bright Ice Blue Accent */
   --font-display: 'Anton', 'Bebas Neue', Impact, 'Space Grotesk', sans-serif;
 }
 

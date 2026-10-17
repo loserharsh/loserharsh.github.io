@@ -12,25 +12,13 @@
     window.lucide.createIcons();
   }
 
-  // 2. Dark / Light Theme Switcher
+  // 2. Permanent Dark Theme Enforcement
   function initTheme() {
-    const html = document.documentElement;
-    const toggleBtn = document.getElementById('themeToggle');
-    const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
-
-    html.setAttribute('data-theme', savedTheme);
-
-    if (toggleBtn) {
-      toggleBtn.addEventListener('click', () => {
-        const currentTheme = html.getAttribute('data-theme');
-        const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        html.setAttribute('data-theme', nextTheme);
-        localStorage.setItem('portfolio-theme', nextTheme);
-
-        if (window.lucide) {
-          window.lucide.createIcons();
-        }
-      });
+    document.documentElement.setAttribute('data-theme', 'dark');
+    try {
+      localStorage.removeItem('portfolio-theme');
+    } catch (e) {
+      /* ignore */
     }
   }
 
