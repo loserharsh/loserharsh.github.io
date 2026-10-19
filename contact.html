@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Harshwardhan Kailasia</title>
+  <meta name="description" content="Direct inquiry and commission portal for Harshwardhan Kailasia. Creative developer, web architect, and software engineer based in India.">
+  <link rel="icon" type="image/svg+xml" href="assets/strawhat.svg">
+
+  <!-- Typography: Plus Jakarta Sans, JetBrains Mono, Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="contact-page-body">
+
+  <!-- KokonutUI Interactive Halftone Dot Field (Membrane Shockwave & Lateral Wake Engine) -->
+  <div class="site-dot-field-wrap" id="siteDotFieldWrap" aria-hidden="true">
+    <canvas id="siteDotFieldCanvas" class="site-dot-field-canvas"></canvas>
+  </div>
+
+  <!-- Subtle Halftone Screentone Overlay -->
+  <div class="screentone-overlay" aria-hidden="true"></div>
+
+  <!-- Full-Width Floating Transparent Top Navbar -->
+  <header class="navbar-wrapper">
+    <nav class="navbar" aria-label="Main Navigation">
+      <!-- Left: Logo & Kanji -->
+      <div class="nav-left">
+        <a href="index.html" class="nav-brand font-heading" aria-label="Harshwardhan Kailasia Portfolio">
+          <span class="brand-text">Harshwardhan Kailasia</span>
+          <span class="nav-kanji-tag font-mono">改善</span>
+        </a>
+      </div>
+
+      <!-- Center: Navigation Links -->
+      <div class="nav-center">
+        <div class="nav-links">
+          <a href="index.html#hero" class="nav-link" data-nav="hero">
+            <span>Home</span>
+            <span class="active-dot"></span>
+          </a>
+          <a href="about.html" class="nav-link" data-nav="about">
+            <span>About</span>
+            <span class="active-dot"></span>
+          </a>
+          <a href="index.html#projects" class="nav-link" data-nav="projects">
+            <span>Projects</span>
+            <span class="active-dot"></span>
+          </a>
+          <a href="index.html#blog" class="nav-link" data-nav="blog">
+            <span>Blog</span>
+            <span class="active-dot"></span>
+          </a>
+          <a href="contact.html" class="nav-link active" data-nav="contact" aria-current="page">
+            <span>Contact</span>
+            <span class="active-dot"></span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: GitHub Logo & Straw Hat Keychain -->
+      <div class="nav-right">
+        <a href="https://github.com/loserharsh" target="_blank" rel="noopener noreferrer" class="nav-github-btn spring-btn" aria-label="GitHub Profile" title="GitHub Profile">
+          <svg class="nav-icon github-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+        </a>
+
+        <!-- Interactive Straw Hat Keychain -->
+        <div class="nav-keychain-wrap" id="strawhatKeychain" role="button" tabindex="0" title="Mugiwara // Straw Hat Keychain (Click to jiggle!)" aria-label="Straw Hat Keychain">
+          <div class="keychain-ring"></div>
+          <div class="keychain-chain">
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+            <span class="chain-link"></span>
+          </div>
+          <div class="keychain-hat-charm">
+            <img src="assets/strawhat_transparent.png" alt="Straw Hat Keychain" class="strawhat-img">
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ==================== MAIN CONTACT HERO & FLOATING CARD ==================== -->
+  <main class="contact-page-main" id="mainContent">
+    <div class="contact-page-card font-sans">
+
+      <!-- Top Giant Title -->
+      <div class="contact-modal-header">
+        <h1 class="contact-giant-title font-heading">Contact me</h1>
+      </div>
+
+      <!-- 2-Column Split: Left Info, Divider, Right Form -->
+      <div class="composer-split-grid contact-split-grid">
+        
+        <!-- Left Info Column -->
+        <div class="composer-split-left contact-split-left">
+          <div class="contact-left-top">
+            <div class="contact-info-block">
+              <span class="contact-info-label font-mono">LOCATION</span>
+              <p class="contact-info-val font-sans">India · Global Remote<br>2026</p>
+            </div>
+
+            <div class="contact-info-block">
+              <span class="contact-info-label font-mono">AVAILABILITY</span>
+              <p class="contact-info-val font-sans">Always Open to Select Opportunities</p>
+            </div>
+          </div>
+
+          <div class="contact-left-bottom">
+            <span class="contact-info-label font-mono">DIRECT INQUIRIES</span>
+            <a href="mailto:harshwardhan1617@gmail.com" class="contact-direct-email font-heading">harshwardhan1617@gmail.com</a>
+          </div>
+        </div>
+
+        <!-- Thin Vertical Divider Line -->
+        <div class="composer-split-divider" aria-hidden="true"></div>
+
+        <!-- Right Form Column -->
+        <div class="composer-split-right contact-split-right">
+          <!-- Silent Iframe for CORS-free submission fallback -->
+          <iframe name="contact_hidden_iframe" id="contactHiddenIframe" style="display: none;" aria-hidden="true"></iframe>
+
+          <form id="directContactForm" action="https://formsubmit.co/harshwardhan1617@gmail.com" method="POST" target="contact_hidden_iframe" class="contact-ajax-form">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_subject" id="hiddenFormSubject" value="[Portfolio Contact] New Inquiry">
+
+            <span class="contact-form-legend font-mono">NAME (REQUIRED)</span>
+            <div class="composer-split-row">
+              <div class="composer-line-field flex-1">
+                <input type="text" id="contactFirstName" name="firstName" required placeholder="First Name*" autocomplete="given-name">
+              </div>
+              <div class="composer-line-field flex-1">
+                <input type="text" id="contactLastName" name="lastName" placeholder="Last Name" autocomplete="family-name">
+              </div>
+            </div>
+
+            <div class="composer-line-field">
+              <input type="text" id="contactService" name="service" placeholder="Service / Subject (e.g. Web Development / Creative Dev / Chat)" autocomplete="off">
+            </div>
+
+            <div class="composer-line-field">
+              <input type="email" id="contactEmail" name="email" required placeholder="Your Email (required)*" autocomplete="email">
+            </div>
+
+            <div class="composer-line-field composer-textarea-wrap">
+              <textarea id="contactMessage" name="message" rows="4" required placeholder="Project description / Message*"></textarea>
+            </div>
+
+            <!-- Action Bar with KokonutUI AI Shimmer Button + Inline Error to the Right -->
+            <div class="composer-actions-bar contact-actions-row">
+              <button type="submit" class="composer-flat-btn kokonut-ai-btn primary font-sans" id="submitContactBtn">
+                <span class="kokonut-btn-text" id="kokonutBtnText">Send Message</span>
+              </button>
+              <span class="contact-inline-error font-mono" id="contactInlineError" style="display: none;" aria-live="polite"></span>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Interactive Hint Pill -->
+    <div class="contact-hint-pill" aria-hidden="true">
+      <span class="pulse-dot"></span>
+      <span>CLICK OR DRAG ON THE BACKGROUND TO TRIGGER HALFTONE SHOCKWAVES</span>
+    </div>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <span class="footer-copy font-mono">© <span id="currentYear">2026</span> HARSHWARDHAN KAILASIA.</span>
+      <a href="index.html" class="back-to-top font-mono spring-btn" aria-label="Return to portfolio home">
+        <span>RETURN HOME ↑</span>
+      </a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="js/dotfield.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -441,15 +441,17 @@
     const btnText = document.getElementById('kokonutBtnText');
     const inlineError = document.getElementById('contactInlineError');
 
-    if (!contactModal) return;
+    if (!contactForm && !contactModal) return;
 
     function openContactModal() {
+      if (!contactModal) return;
       contactModal.style.display = 'flex';
       const firstInput = document.getElementById('contactFirstName');
       if (firstInput) setTimeout(() => firstInput.focus(), 80);
     }
 
     function closeContactModal() {
+      if (!contactModal) return;
       contactModal.style.display = 'none';
       if (inlineError) {
         inlineError.style.display = 'none';
@@ -457,24 +459,28 @@
       }
     }
 
-    if (hugeCta) {
+    if (hugeCta && !hugeCta.getAttribute('href')) {
       hugeCta.addEventListener('click', (e) => {
-        e.preventDefault();
-        openContactModal();
+        if (contactModal) {
+          e.preventDefault();
+          openContactModal();
+        }
       });
     }
 
     if (closeContactBtn) closeContactBtn.addEventListener('click', closeContactModal);
 
-    contactModal.addEventListener('click', (e) => {
-      if (e.target === contactModal) closeContactModal();
-    });
+    if (contactModal) {
+      contactModal.addEventListener('click', (e) => {
+        if (e.target === contactModal) closeContactModal();
+      });
 
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && contactModal.style.display === 'flex') {
-        closeContactModal();
-      }
-    });
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && contactModal.style.display === 'flex') {
+          closeContactModal();
+        }
+      });
+    }
 
     function setAnimatedText(newText) {
       if (!btnText) return;

@@ -140,6 +140,28 @@ body {
     linear-gradient(to bottom, var(--text-primary) 1px, transparent 1px);
 }
 
+/* ==========================================================================
+   INTERACTIVE DOT FIELD (MEMBRANE HALFTONE SHOCKWAVE & WAKE SIMULATION)
+   ========================================================================== */
+.site-dot-field-wrap {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.site-dot-field-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+  color: #ffffff;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -2193,6 +2215,104 @@ button {
   }
   .contact-giant-title {
     font-size: 2.5rem;
+  }
+}
+
+/* ==========================================================================
+   DEDICATED CONTACT PAGE (.contact-page-*)
+   ========================================================================== */
+.contact-page-body {
+  background-color: #000000;
+  color: #ffffff;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.contact-page-main {
+  position: relative;
+  z-index: 10;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6.5rem 1.5rem 3.5rem;
+  box-sizing: border-box;
+}
+
+.contact-page-card {
+  width: 100%;
+  max-width: 930px;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 3.25rem;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85);
+  box-sizing: border-box;
+  position: relative;
+}
+
+.contact-page-card .contact-giant-title {
+  color: #ffffff;
+}
+
+.contact-page-card .contact-info-val {
+  color: #d4d4d8;
+}
+
+.contact-page-card .contact-direct-email {
+  color: #ffffff;
+}
+
+.contact-page-card .contact-direct-email:hover {
+  color: var(--color-accent);
+}
+
+.contact-page-card .composer-line-field input,
+.contact-page-card .composer-line-field textarea {
+  color: #ffffff;
+  border-bottom-color: rgba(255, 255, 255, 0.16);
+}
+
+.contact-page-card .composer-line-field input:focus,
+.contact-page-card .composer-line-field textarea:focus {
+  border-bottom-color: var(--color-accent);
+}
+
+.contact-hint-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.75rem;
+  padding: 0.4rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: #888888;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  user-select: none;
+}
+
+.contact-hint-pill .pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 8px var(--color-accent);
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .contact-page-card {
+    padding: 2.25rem 1.5rem;
   }
 }
 
